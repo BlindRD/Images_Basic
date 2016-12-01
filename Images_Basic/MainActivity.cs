@@ -8,23 +8,36 @@ using Android.OS;
 
 namespace Images_Basic
 {
-    [Activity(Label = "Images_Basic", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "Android.Xamarin | #3", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
-        int count = 1;
+
+        ImageView div;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
-            // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
-            // Get our button from the layout resource,
-            // and attach an event to it
-            Button button = FindViewById<Button>(Resource.Id.MyButton);
+            div = FindViewById<ImageView>(Resource.Id.imageView1);
+            div.SetImageResource(Resource.Drawable.page2);
+            Button myBtn = FindViewById<Button>(Resource.Id.button1);
+            Button myBtn3 = FindViewById<Button>(Resource.Id.button3);
+            myBtn.Click += ChangeImage;
+            myBtn3.Click += OpacityChange;
 
-            button.Click += delegate { button.Text = string.Format("{0} clicks!", count++); };
+
+        }
+
+        private void OpacityChange(object sender, EventArgs e)
+        {
+            div.Alpha = 0.2f;
+        }
+
+        private void ChangeImage(object sender, EventArgs e)
+        {
+            div.SetImageResource(Resource.Drawable.lolo);
         }
     }
 }
